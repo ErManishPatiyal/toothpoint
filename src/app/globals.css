@@ -1,0 +1,288 @@
+@import "tailwindcss";
+@import "react-big-calendar/lib/css/react-big-calendar.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --animate-slide-up: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Calendar custom styles */
+.rbc-calendar {
+  @apply font-sans;
+}
+
+.rbc-toolbar {
+  @apply mb-4 flex-wrap gap-2;
+}
+
+.rbc-btn-group {
+  @apply flex gap-1;
+}
+
+.rbc-toolbar button {
+  @apply px-3 py-1.5 text-sm font-medium rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors;
+}
+
+.rbc-toolbar button.rbc-active {
+  @apply bg-blue-600 text-white border-blue-600;
+}
+
+.rbc-toolbar label {
+  @apply px-3 py-1.5 text-sm font-medium text-gray-700;
+}
+
+.rbc-month-view {
+  @apply border border-gray-200 rounded-lg overflow-hidden;
+}
+
+.rbc-month-header {
+  @apply bg-gray-50 border-b border-gray-200;
+}
+
+.rbc-header {
+  @apply py-2 px-1 text-center text-sm font-medium text-gray-600 border-r border-gray-200 last:border-r-0;
+}
+
+.rbc-date-cell {
+  @apply relative min-h-[100px] border-r border-gray-100 border-b border-gray-100;
+}
+
+.rbc-date-cell.rbc-now {
+  @apply bg-blue-50;
+}
+
+.rbc-date-cell.rbc-off-range {
+  @apply bg-gray-50 text-gray-400;
+}
+
+.rbc-day-bg {
+  @apply bg-transparent;
+}
+
+.rbc-day-bg.rbc-today {
+  @apply bg-blue-50;
+}
+
+.rbc-event {
+  @apply px-1.5 py-0.5 text-xs font-medium rounded border-none cursor-pointer;
+  min-height: 20px;
+}
+
+.rbc-event-label {
+  @apply truncate;
+}
+
+.rbc-event-content {
+  @apply truncate;
+}
+
+.rbc-show-more {
+  @apply text-xs text-blue-600 hover:underline;
+}
+
+.rbc-agenda-view {
+  @apply border border-gray-200 rounded-lg overflow-hidden;
+}
+
+.rbc-agenda-table {
+  @apply w-full;
+}
+
+.rbc-agenda-table th {
+  @apply px-4 py-2 text-left text-sm font-medium text-gray-600 bg-gray-50 border-b border-gray-200;
+}
+
+.rbc-agenda-table td {
+  @apply px-4 py-2 text-sm border-b border-gray-100;
+}
+
+.rbc-agenda-date-cell {
+  @apply font-medium text-gray-900;
+}
+
+.rbc-agenda-time-cell {
+  @apply text-gray-500 whitespace-nowrap;
+}
+
+.rbc-agenda-event-cell {
+  @apply p-0;
+}
+
+/* Slot status colors */
+.slot-available {
+  @apply bg-green-100 text-green-800 border-green-200;
+}
+
+.slot-booked {
+  @apply bg-red-100 text-red-800 border-red-200;
+}
+
+.slot-blocked {
+  @apply bg-gray-100 text-gray-600 border-gray-200;
+}
+
+.appointment-pending {
+  @apply bg-yellow-100 text-yellow-800 border-yellow-200;
+}
+
+.appointment-approved {
+  @apply bg-blue-100 text-blue-800 border-blue-200;
+}
+
+.appointment-rejected {
+  @apply bg-red-100 text-red-800 border-red-200;
+}
+
+.appointment-cancelled {
+  @apply bg-gray-100 text-gray-600 border-gray-200 line-through;
+}
+
+.appointment-completed {
+  @apply bg-green-100 text-green-800 border-green-200;
+}
+
+/* PWA install prompt */
+.pwa-install-prompt {
+  @apply fixed bottom-4 right-4 z-50 max-w-sm bg-white rounded-lg shadow-lg border border-gray-200 p-4 animate-slide-up;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Focus visible for accessibility */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded hover:bg-gray-400;
+}
+
+/* Form styles */
+input, select, textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors;
+}
+
+label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+button {
+  @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+}
+
+.btn-secondary {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200 focus:ring-gray-500;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+}
+
+.btn-outline {
+  @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-gray-100;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+.card-footer {
+  @apply px-6 py-4 border-t border-gray-100 bg-gray-50;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-pending {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.badge-approved {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.badge-rejected {
+  @apply bg-red-100 text-red-800;
+}
+
+.badge-cancelled {
+  @apply bg-gray-100 text-gray-600;
+}
+
+.badge-completed {
+  @apply bg-green-100 text-green-800;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .rbc-toolbar {
+    @apply flex-col;
+  }
+  
+  .rbc-btn-group {
+    @apply w-full;
+  }
+  
+  .rbc-toolbar button {
+    @apply flex-1;
+  }
+}
